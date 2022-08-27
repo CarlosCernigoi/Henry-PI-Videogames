@@ -1,0 +1,19 @@
+.card {
+    margin: 5px;
+    width: 40rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .element {
+    border: 6px solid rgba(100, 100, 100, 1);
+    padding: 6px;
+    border-radius: 29px;
+    background-color: rgb(233, 231, 231);
+    font-size: 85%;
+    opacity: 0.8;
+  }
+  
