@@ -1,10 +1,10 @@
 const { DataTypes } = require('sequelize');
 // Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
+// Luego le inyectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('videogame', {
-    // Para evitar repetri un número de videogame de los que ya tiene RAWG
+    // Para evitar repetir un número de videogame de los que ya tiene RAWG
     // defino el Id de tipo UUID, versión V4 y sé que tendrá un formato del tipo: 9a8bc576-6a25-4ff2-9a5e-6d4cfec8bc7b
     // de esta manera puedo diferenciarlo de un Id obtenido de la página de RAWG, que es siempre un entero
     id: {

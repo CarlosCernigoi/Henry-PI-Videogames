@@ -1,7 +1,7 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap'); */
 
 .background {
-    height: 100vh;
+    height: 90vh;
     background: url("./pascal-meier-6vi5hk97XGo-unsplash.jpg");
     background-size: cover;
     display: flex;

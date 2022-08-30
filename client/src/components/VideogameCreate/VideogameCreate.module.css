@@ -1,3 +1,9 @@
+/* .containerCreate { */
+  /* background: url("../../images/pexels-gdtography-911738.jpg"); */
+  /* background-color: burlywood;
+  padding: 12px 20px;
+} */
+
 .error {
   font-size: 100%;
   font-style: italic;
@@ -5,9 +11,9 @@
   color: red;
 }
 
-textarea {
+form textarea {
   width: 100%;
-  height: 150px;
+  height: auto;
   padding: 12px 20px;
   box-sizing: border-box;
   border: 2px solid #ccc;
@@ -33,203 +39,173 @@ form select {
   font-size: 16px;
 }
 
-form textarea {
-  box-sizing: border-box;
-  border: 3px solid #ccc;
-  border-radius: 4px;
-  background-color: #f8f8f8;
-  font-size: 16px;
-}
-
-.containerPpal {
-  display: grid;
-  grid-template-columns: auto 50px auto;
-}
-
-.options {
-  display:grid;
-  grid-template-rows: [row1] 260px [row2] 110px [row3] 110px [row4];
-  
-  margin-top: 10px;
-  width: 200px;
-  height: 480px;
-  /* border:solid;
-  border-radius:10px;
-  padding:10px; */
-}
-
-.optuno {
-  grid-row-start: 1;
-  grid-row-end: 2;
-  /* align-items: baseline !important; */
-  color: red;
-}
-
-.optdos {
-  grid-row-start: 2;
-  grid-row-end: 3;
-  align-items: end;
-  border:solid;
-  border-radius:10px;
-  padding:10px;
-}
-
-.opttres {
-  grid-row-start: 3;
-  grid-row-end: 4;
-  align-items: end;
-  border:solid;
-  border-radius:10px;
-  padding:10px;
-}
-
-.container {
-  display: grid;
-  width: 40rem;
-  position: relative;
-  /* top: 15%; */
-  left: 30%;
-  grid-template-rows: [row1] 40px [row2] 10px [row3] 160px repeat(5, 40px [row1]);
-  column-gap: 10px;
-  row-gap: 10px;
-  grid-template-areas:
-    "izq der final";
-  align-items: center;
-}
-
-.divbuttons {
-  display: flex;
-  flex-direction: row;
-  /* padding: 200px; */
-  justify-content: space-around;
-  font-size: 16px;
-  font-weight: bold;
-  /* grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 11;
-  grid-row-end: 12; */
-
-}
-
-.boton {
-  font-size: 16px !important;
-  font-weight: bold;
-  padding:26px;
-  
-  /* font-size: 20px;
-  line-height: 50px;
-  text-align: center;
-  width: 100px;
-  height: 50px; */
-}
-
-.label {
+form label {
   border: 3px solid rgba(100, 100, 100, 1);
   padding: 6px;
   border-radius: 9px;
   background-color: rgb(233, 231, 231);
   font-size: 85%;
   opacity: 0.8;
-  /* width:auto;
-  height: auto; */
-  grid-area: izq;
-  grid-column-start: 1;
-  grid-column-end: 2;
+}
+form span {
+  color: red;
+  text-align: left;
+  font-weight: bold; 
+  font-style: italic;
 }
 
-.uno {
-  grid-row-start: 1;
-  grid-row-end: 2;
+.linkbutton{
+  font-size: 16px;
+  font-weight: bold; 
+  width: 100px;
 }
 
-.dos {
-  grid-row-start: 2;
-  grid-row-end: 3;
+.formgrid {
+  background: url("../../images/pexels-gdtography-911738.jpg");
+  display: grid;
+  column-gap: 10px;
+  row-gap: 10px;
+  grid-template-columns: repeat(11, 1fr);
+  grid-template-rows: repeat(12, 40px);
+  grid-template-areas: 
+    "... label1 label1 input1 input1 input1 input1 input1 error1 error1" 
+    "... label2 label2 input2 input2 input2 input2 input2 error2 error2" 
+    "... ...... ...... input2 input2 input2 input2 input2 ...... ......" 
+    "... ...... ...... input2 input2 input2 input2 input2 ...... ......" 
+    "... ...... ...... input2 input2 input2 input2 input2 ...... ......" 
+    "... label3 label3 input3 input3 input3 input3 input3 error3 error3" 
+    "... label4 label4 input4 input4 input4 input4 input4 error4 error4" 
+    "... label5 label5 input5 input5 input5 input5 input5 error5 error5" 
+    "... label6 label6 input6 input6 input6 input6 input6 error6 error6" 
+    "... platfo platfo platfo platfo platfo platfo platfo ...... ......" 
+    "... label7 label7 input7 input7 input7 input7 input7 error7 error7" 
+    "... genres genres genres genres genres genres genres ...... ......" 
+}
+.label1 {
+  grid-area: label1;
+}
+.input1 {
+  grid-area: input1;
 }
 
-.tres {
-  grid-row-start: 3;
-  grid-row-end: 4;
+.label2 {
+  grid-area: label2;
+}
+.input2 {
+  grid-area: input2;
 }
 
-.cuatro {
-  grid-row-start: 4;
-  grid-row-end: 5;
+.label3 {
+  grid-area: label3;
+}
+.input3 {
+  grid-area: input3;
 }
 
-.cinco {
-  grid-row-start: 5;
-  grid-row-end: 6;
+.label4 {
+  grid-area: label4;
+}
+.input4 {
+  grid-area: input4;
 }
 
-.seis {
-  grid-row-start: 6;
-  grid-row-end: 7;
+.label5 {
+  grid-area: label5;
+}
+.input5 {
+  grid-area: input5;
 }
 
-.siete {
-  grid-row-start: 7;
-  grid-row-end: 8;
+.label6 {
+  grid-area: label6;
+}
+.input6 {
+  grid-area: input6;
 }
 
-.ocho {
-  grid-row-start: 8;
-  grid-row-end: 9;
+.label7 {
+  grid-area: label7;
+}
+.input7 {
+  grid-area: input7;
 }
 
-.nueve {
-  grid-row-start: 9;
-  grid-row-end: 10;
+.error1{
+  grid-area: error1;
 }
 
-
-.input {
-  grid-area: der;
-  grid-column-start: 2;
-  grid-column-end: 3;
+.error2{
+  grid-area: error2;
 }
 
-.iuno {
-  grid-row-start: 1;
-  grid-row-end: 2;
+.error3{
+  grid-area: error3;
 }
 
-.idos {
-  grid-row-start: 2;
-  grid-row-end: 3;
+.error4{
+  grid-area: error4;
 }
 
-.itres {
-  grid-row-start: 3;
-  grid-row-end: 4;
+.error5{
+  grid-area: error5;
 }
 
-.icuatro {
-  grid-row-start: 4;
-  grid-row-end: 5;
+.error6{
+  grid-area: error6;
 }
 
-.icinco {
-  grid-row-start: 5;
-  grid-row-end: 6;
+.error7{
+  grid-area: error7;
 }
 
-.iseis {
-  grid-row-start: 6;
-  grid-row-end: 7;
+.platform {
+  grid-area: platfo;
+  border: 3px solid rgba(100, 100, 100, 1);
+  padding: 6px;
+  border-radius: 9px;
+  background-color: #f8f8f8;
+  font-size: 85%;
+  height: auto;
 }
 
-.isiete {
-  grid-row-start: 7;
-  grid-row-end: 8;
+.genres {
+  grid-area: genres;
+  border: 3px solid rgba(100, 100, 100, 1);
+  padding: 6px;
+  border-radius: 9px;
+  background-color: #f8f8f8;
+  font-size: 85%;
+  height: auto;
 }
 
-.iocho {
-  grid-row-start: 8;
-  grid-row-end: 9;
+.divbuttons {
+  background: url("../../images/pexels-gdtography-911738.jpg");
+  display: grid;
+  column-gap: 10px;
+  row-gap: 10px;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-areas: 
+    "... buttn1 ... buttn2 ... buttn3 ..." ;
+}
+.buttn1 {
+  grid-area: buttn1;
+  cursor: pointer;
 }
 
-.inueve {
-  grid-row-start: 9;
-  grid-row-end: 10;
+.buttn2 {
+  grid-area: buttn2;
+  cursor: pointer;
+}
+
+.buttn3 {
+  grid-area: buttn3;
+  border: 1px solid rgba(100, 100, 100, 1);
+  font-size: 13.33px;
+  font-family: Arial;
+  padding: 6px;
+  border-radius: 2px;
+  /* background-color: rgb(233, 231, 231); */
+  background-color: #f0f0f0;
+  font-size: 85%;
+  /* opacity: 0.8; */
 }

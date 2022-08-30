@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllVideogames, getGenres, filterOrigin, filterGenre, orderBy } from '../../redux/actions'
+import { getAllVideogames, refreshAllVideogames, getGenres, filterOrigin, filterGenre, orderBy } from '../../redux/actions'
 import Card from "../Card";
 import { Link } from 'react-router-dom';
 import Paginador from '../Paginador'
@@ -26,11 +26,11 @@ export default function Home() {
     const paginado = (pageNum) => {
         setCurrentPage(pageNum)
     }
-    const actualVideogames = allVideogames.slice(posFirstVg, posLastVg)
+    let actualVideogames = allVideogames.slice(posFirstVg, posLastVg)
     console.log('actualVideogames: ', actualVideogames)
 
     useEffect(() => {
-        dispatch(getAllVideogames());
+        if (allVideogames.length === 0) dispatch(getAllVideogames());
         // eslint-disable-next-line
     }, [dispatch])
 
@@ -39,10 +39,23 @@ export default function Home() {
         // eslint-disable-next-line
     }, [dispatch])
 
-    /* function handleClick(e) {
+    function handleClick(e) {
+        console.log('entro a handleClick')
         e.preventDefault();
         dispatch(getAllVideogames());
-    } */
+        // dispatch(refreshAllVideogames());
+        // actualVideogames = store.allVideogames.slice(0)
+        // videoGames = useSelector(state => state.allVideogames)
+        // let element = document.getElementById('order')
+        
+        // element.addEventListener("change", (e) =>{
+        //     element.value = 'name_asc';
+        //     element.dispatchEvent(new Event("change"))
+        // })
+        // state.videoGames = [...state.allVideogames]
+        // actualVideogames = [...state.allVideogames]
+        console.log('actualVideogames en handleClick: ', actualVideogames)
+    }
 
     function handleFilterOrigin(e) {
         e.preventDefault();
@@ -82,6 +95,9 @@ export default function Home() {
                 <div className={styles.searchbar}>
                     <SearchBar />
                 </div>
+                <div className={styles.searchbar} onClick={e=>handleClick(e)}>
+                <button>All Videogames</button>
+                </div>
                 <div className={styles.searchbar}>
                     <label>Page: </label>
                     <Paginador vgXPage={vgXPage} allVg={allVideogames.length} paginado={paginado} />
@@ -89,7 +105,7 @@ export default function Home() {
                 <div className={styles.filtros}>
                     <div className={styles.orderBox}>
                         <label>Order: </label>
-                        <select onChange={(e) => handleSort(e)}>
+                        <select onChange={(e) => handleSort(e)} id='order'>
                             <option value='disordered'> No Ordered</option>
                             <option value='name_asc'> Name [A-Z]</option>
                             <option value='name_desc'> Name [Z-A]</option>
@@ -116,7 +132,7 @@ export default function Home() {
                     </div>
                 </div> {/* end filtros */}
             </div> {/* end containerHeader */}
-
+            {/* Fin Cabecera*/}
             {/* <p></p> */}
             <br />
             <div className={styles.showVG}>

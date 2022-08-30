@@ -3,21 +3,17 @@ const { Router } = require('express');
 const axios = require('axios');
 const { API_KEY } = process.env;
 const { Videogame, Genre } = require('../db.js')
-
 const router = Router();
-
 
 // Obtengo el detalle de un videogame en particular por ID
 router.get('/:id', async function (req, res) {
-    const { id } = req.params; //si el id es un UUIDV4 tiene guiones
+    const { id } = req.params; 
 
     try { 
+        //si el id es un UUIDV4 tiene guiones
         if (id.includes("-")) {
             const game = await Videogame.findByPk(id,{include: {model: Genre, attributes: ['name'],
             through: {attributes: []}}})
-            /* const game = await Videogame.findOne({ where: {id}, //findByPk
-                include: {model: Genre, attributes: ['name'],
-                through: {attributes: []}}}) */
                 const vgame = {
                     id: game.id,
                     name: game.name,
@@ -26,12 +22,9 @@ router.get('/:id', async function (req, res) {
                     description: game.description,
                     released: game.released,
                     platforms: game.platforms,
-                    // createdAt: game.createdAt,
-                    // updateAt: game.updatedAt,
                     genres: game.genres.map(p => p.name).join(', ')
                 }
                 return res.json(vgame)
-                // return res.json(game)
         } else {
             const gameAPI = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
                     

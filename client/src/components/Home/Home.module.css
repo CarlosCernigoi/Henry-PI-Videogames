@@ -11,7 +11,7 @@
     flex-direction: column;
     /* height: 99vh; */
     height: auto;
-    background-color: rgb(251, 175, 184);
+    /* background-color: rgb(251, 175, 184); */
 } 
 
 .containerHeader{
@@ -31,7 +31,7 @@
 
 .searchbar{
     display: flex;
-    width: 20%;
+    width: 15%;
     color: white;
 }
  
