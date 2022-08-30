@@ -108,10 +108,10 @@ router.get("/", async (req, res) => {
       }
       allVGames = allVGames.concat(localVG);
       //ahora los externos
-      let APIRAWG = `https://api.rawg.io/api/games?key=${API_KEY}`;
+      let APIRAWG = `https://api.rawg.io/api/games?key=${API_KEY}&page_size=34`;
       //let APIRAWG = `https://api.rawg.io/api/games?key=c6c3872f7e964e0891abb8bbdb7118cb`
-      let cont = 0; //Voy a traer sólo los primeros 100 registros. Como cada consulta trae 20 hago 5 pasadas
-      while (cont < 5) {
+      let cont = 0; //Voy a traer sólo los primeros 100 registros. Como cada consulta trae 34 hago 3 pasadas
+      while (cont < 3) {
         let respAPIRAWG = await axios.get(APIRAWG); //traigo datos externos
         let extVGames = respAPIRAWG.data.results.map((vg) => {
           //dentro de data.results están los videogames, mapeo y agrego flag local en false
