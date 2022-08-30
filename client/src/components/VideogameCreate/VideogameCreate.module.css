@@ -1,9 +1,3 @@
-/* .containerCreate { */
-  /* background: url("../../images/pexels-gdtography-911738.jpg"); */
-  /* background-color: burlywood;
-  padding: 12px 20px;
-} */
-
 .error {
   font-size: 100%;
   font-style: italic;
@@ -204,8 +198,6 @@ form span {
   font-family: Arial;
   padding: 6px;
   border-radius: 2px;
-  /* background-color: rgb(233, 231, 231); */
   background-color: #f0f0f0;
   font-size: 85%;
-  /* opacity: 0.8; */
 }

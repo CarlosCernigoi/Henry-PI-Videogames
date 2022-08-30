@@ -8,7 +8,6 @@ import {
 import {
   FILTER_ORIGIN,
   FILTER_GENRE,
-  // REFRESH_ALL_VIDEOGAMES,
   ORDER_BY,
   SEARCH_BY_NAME,
 } from "../actions";
@@ -18,7 +17,7 @@ const initialState = {
   allVideogames: [],
   videogameDetail: {},
   allGenres: [],
-  createError: []
+  createError: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -29,11 +28,6 @@ function rootReducer(state = initialState, action) {
         videoGames: action.payload,
         allVideogames: action.payload,
       };
-    // case REFRESH_ALL_VIDEOGAMES:
-    //   return {
-    //     ...state,
-    //     videoGames: [...state.allVideogames],
-    //   };
     case GET_VIDEOGAME_DETAILS:
       return {
         ...state,
@@ -57,12 +51,7 @@ function rootReducer(state = initialState, action) {
           videoGames:
             action.payload === "all" ? state.allVideogames : filterOrigin,
         };
-      }; /* else {
-                return {
-                    ...state,
-                    videoGames: [{ name: 'No videogames to show with this filter...' }]
-                };
-            }; */
+      }
     case FILTER_GENRE:
       state.videoGames = [...state.allVideogames];
       const filterGenre = state.videoGames.filter(
@@ -111,7 +100,6 @@ function rootReducer(state = initialState, action) {
     case CREATE_VIDEOGAME:
       return {
         ...state,
-        // createError: action.payload,
       };
 
     default:

@@ -37,7 +37,7 @@ export default function VideogameDetail(props) {
                 // : <Loading />
                 :
                 <div>
-                    <h1> Ups!! Seems this page is not found...</h1>
+                    <h1> Ups!! Seems this page doesn't exists...</h1>
                     <Link to='/home'>
                         <button>Back to Home</button>
                     </Link>

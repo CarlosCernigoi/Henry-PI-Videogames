@@ -168,7 +168,8 @@ export default function VideogameCreate() {
       .catch((e) => {console.log(e)
         alert(e.response.data.routine);
       });
-    // history.push('/home') //vuelve a página principal
+      dispatch(getAllVideogames());
+    // history.push('/home') //vuelve a página principal (pero no la actualiza con el nuevo registro
   }
   function handleCleanForm(e) {
     e.preventDefault();
@@ -176,7 +177,7 @@ export default function VideogameCreate() {
   }
 
   return (
-    <div className={styles.containerCreate}>
+    <div >
       <h1> Create your Videogame!!</h1>
       <form
         id="form"
