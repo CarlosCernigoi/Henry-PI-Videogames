@@ -17,7 +17,6 @@ const initialState = {
   allVideogames: [],
   videogameDetail: {},
   allGenres: [],
-  createError: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -39,32 +38,32 @@ function rootReducer(state = initialState, action) {
         allGenres: action.payload,
       };
     case FILTER_ORIGIN:
-      state.videoGames = [...state.allVideogames];
+      // state.videoGames = [...state.allVideogames];
       const filterOrigin =
         action.payload === "db"
-          ? state.videoGames.filter((vg) => vg.local)
-          : state.videoGames.filter((vg) => !vg.local);
+          ? state.allVideogames.filter((vg) => vg.local)
+          : state.allVideogames.filter((vg) => !vg.local);
       console.log("filterOrigin: ", filterOrigin);
       if (state.videoGames.length > 0) {
         return {
           ...state,
           videoGames:
-            action.payload === "all" ? state.allVideogames : filterOrigin,
+            action.payload === "all" ? [...state.allVideogames] : filterOrigin,
         };
       }
     case FILTER_GENRE:
-      state.videoGames = [...state.allVideogames];
-      const filterGenre = state.videoGames.filter(
+      // state.videoGames = [...state.allVideogames];
+      const filterGenre = state.allVideogames.filter(
         (vg) => vg.genres && vg.genres.includes(action.payload)
       );
       console.log("filterGenre: ", filterGenre);
       return {
         ...state,
         videoGames:
-          action.payload === "all" ? state.allVideogames : filterGenre,
+          action.payload === "all" ? [...state.allVideogames] : filterGenre,
       };
     case ORDER_BY:
-      state.videoGames = [...state.allVideogames];
+      // state.videoGames = [...state.allVideogames];
       console.log("action.payload: ", action.payload);
       console.log("state.allVideogames: ", state.allVideogames);
       let orderedBy = [];
@@ -84,13 +83,14 @@ function rootReducer(state = initialState, action) {
           if (a.name < b.name) return 1;
           return 0;
         });
+      } else/*  if (action.payload === "disordered") */ {
+        orderedBy = [...state.allVideogames];
       }
       console.log("state.allVideogames: ", state.allVideogames);
-      console.log("orderedByRating: ", orderedBy);
+      console.log("orderedBy: ", orderedBy);
       return {
         ...state,
-        videoGames:
-          action.payload === "disordered" ? state.allVideogames : orderedBy,
+        videoGames: [...orderedBy],
       };
     case SEARCH_BY_NAME:
       return {

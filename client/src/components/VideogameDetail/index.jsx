@@ -20,7 +20,6 @@ export default function VideogameDetail(props) {
 
     return (
         <div className={styles.card}>
-            {/* {theVideogame ?  */}
             {(theVideogame.description !== '404') ?
                 <div className={styles.element}>
                     <h2>{name}</h2>
@@ -34,7 +33,6 @@ export default function VideogameDetail(props) {
                         <button>Back to Home</button>
                     </Link>
                 </div>
-                // : <Loading />
                 :
                 <div>
                     <h1> Ups!! Seems this page doesn't exists...</h1>

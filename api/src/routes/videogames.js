@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
   try {
     let allVGames = []; //array para guardar los vg
     if (name) {
-      console.log("entro a if name");
+      // console.log("entro a if name");
       //uso iLike porque es case insensitive (sólo postgres)
       const localVGames = await Videogame.findAll({
         where: { name: { [Op.iLike]: `%${name}%` } },
@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
         ],
         include: { model: Genre, attributes: ["name"] },
       });
-      console.log(localVGames);
+      // console.log(localVGames);
       if (localVGames) {
         console.log("entro a if localVgames");
         localVG = localVGames.map((vg) => {
@@ -134,28 +134,28 @@ router.get("/", async (req, res) => {
     }
     if (allVGames.length === 0)
       allVGames = [{ name: "No hay registros que satisfagan la búsqueda" }];
-    res.json(allVGames); //devuelvo resultado búsqueda
+    return res.json(allVGames); //devuelvo resultado búsqueda
   } catch (error) {
-    res.status(404).send(error.message);
-    return [];
+    return res.status(404).send(error.message);
+    // return res.json([]);
   }
 });
 
 router.post("/", async (req, res) => {
   let { name, description, image, released, rating, platforms, genres } =
     req.body;
-    if (!image) image = 'http://www.bibliotecapopular.org/images/lucernario.jpg'
+  console.log(name, description, image, released, rating, platforms, genres);
+  if (!image) image = "http://www.bibliotecapopular.org/images/lucernario.jpg";
 
- /*  let errors = [];
-  if (!name) res.status(402).json("Property name cannot be empty");
+  if (!name) return res.status(402).json("Property name cannot be empty");
   if (!description)
-    res.status(402).json("Property description cannot be empty");
-  if (!platforms) res.status(402).json("Property platforms cannot be empty");
-  if (!rating) res.status(402).json("Property rating cannot be empty");
-  if (!isNaN(rating) || rating < 0 || rating > 5)
-    res.status(402).json("Property rating must be a number between 0 and 5");
-  if (!(released instanceof Date && !isNaN(released)))
-    res.status(402).json("Property released must be a valid date"); */
+    return res.status(402).json("Property description cannot be empty");
+  if (!platforms)
+    return res.status(402).json("Property platforms cannot be empty");
+  if (rating === undefined)
+    return res.status(402).json("Property rating cannot be empty");
+  if (isNaN(rating) || rating < 0 || rating > 5)
+    return res.status(402).json("Property rating must be a number between 0 and 5");
 
   try {
     let newGame = await Videogame.create({
@@ -171,9 +171,9 @@ router.post("/", async (req, res) => {
       let genre = await Genre.findOne({ where: { name: gen } }); //para obtener el id
       await newGame.addGenre(genre);
     });
-    res.json(`New Videogame ${name} successfully created!`);
+    return res.json(`New Videogame ${name} successfully created!`);
   } catch (error) {
-    res.status(404).send(error);
+    return res.status(404).send(error);
   }
 });
 

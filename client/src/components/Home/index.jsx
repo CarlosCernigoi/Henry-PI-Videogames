@@ -16,8 +16,9 @@ import styles from "./Home.module.css";
 
 export default function Home() {
   const dispatch = useDispatch();
-  let allVideogames = useSelector((state) => state.videoGames);
-  console.log("state.videoGames: ", allVideogames);
+  let stateVideoGames = useSelector((state) => state.videoGames);
+  let stateAllVideoGames = useSelector((state) => state.allVideogames);
+  console.log("state.videoGames: ", stateVideoGames);
   const allGenres = useSelector((state) => state.allGenres);
   console.log("allGenres: ", allGenres);
   const [ordered, setOrdered] = useState("");
@@ -32,13 +33,13 @@ export default function Home() {
   const paginado = (pageNum) => {
     setCurrentPage(pageNum);
   };
-  let actualVideogames = allVideogames.slice(posFirstVg, posLastVg);
+  let actualVideogames = stateVideoGames.slice(posFirstVg, posLastVg);
   console.log("actualVideogames: ", actualVideogames);
 
   useEffect(() => {
-    if (allVideogames.length === 0) dispatch(getAllVideogames());
+    dispatch(getAllVideogames());
     // eslint-disable-next-line
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getGenres());
@@ -53,7 +54,7 @@ export default function Home() {
     e.preventDefault();
     //si el filtro es por locales, me fijo si hay alguno
     if (e.target.value === "db") {
-      let locales = allVideogames.filter((vg) => vg.local === true).length;
+      let locales = stateAllVideoGames.filter((vg) => vg.local === true).length;
       if (locales === 0) {
         alert("No videogames in local database");
         e.target.selectedIndex = 0;
@@ -96,7 +97,7 @@ export default function Home() {
           <label>Page: </label>
           <Paginador
             vgXPage={vgXPage}
-            allVg={allVideogames.length}
+            allVg={stateVideoGames.length}
             paginado={paginado}
           />
         </div>
@@ -138,10 +139,10 @@ export default function Home() {
       {/* Fin Cabecera*/}
       <br />
       <div className={styles.showVG}>
-        {actualVideogames.length > 0 ? (
-          actualVideogames[0].name !==
+        { actualVideogames.length > 0 ? ( 
+          actualVideogames[0]?.name !==
           "No hay registros que satisfagan la búsqueda" ? (
-            actualVideogames.map((vg) => {
+            actualVideogames?.map((vg) => {
               return (
                 <Link to={"/home/" + vg.id}>
                   <Card
@@ -161,9 +162,11 @@ export default function Home() {
               </div>
             </div>
           )
-        ) : (
+         ) : 
+        (
           <Loading />
         )}
+
       </div>
     </div>
   );

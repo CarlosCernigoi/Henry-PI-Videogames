@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink, Link, useHistory } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllVideogames,
@@ -58,8 +58,6 @@ export default function VideogameCreate() {
   }
   getPlatforms();
   console.log(platforms);
-
-  const history = useHistory();
 
   console.log("genres: ", allGenres);
   let initialInput = {
@@ -166,10 +164,9 @@ export default function VideogameCreate() {
         setInput(initialInput);
       })
       .catch((e) => {console.log(e)
-        alert(e.response.data.routine);
+        alert(e.response.data);
       });
       dispatch(getAllVideogames());
-    // history.push('/home') //vuelve a página principal (pero no la actualiza con el nuevo registro
   }
   function handleCleanForm(e) {
     e.preventDefault();
